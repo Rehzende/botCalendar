@@ -1,6 +1,6 @@
-# Bot Calendly para Discord
+# Bot Google Calendar para Discord
 
-Bot simples que obtem os reuniões agendadadas dos dia envia uma notifiação em uma canal no discord, ou pode ser chamado, por comando, solicitando a agenda do dia.
+Bot simples que obtem os reuniões agendadadas do dia envia uma notifiação em uma canal no discord, ou pode ser chamado, por comando, solicitando a agenda do dia.
 
 ## Requisitos
 
