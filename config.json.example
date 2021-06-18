@@ -1,0 +1,13 @@
+[{
+        "token": "discord_token",
+        "notification_channel": 000000000000000,
+        "role_to_mention": 1234,
+        "prefix": ">"
+    },
+    {
+        "credentials": "credentials.json",
+        "token.pickle": "token.pickle",
+        "scopes": "https://www.googleapis.com/auth/calendar"
+        "calendar_id": ""
+    }
+]
