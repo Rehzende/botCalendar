@@ -25,13 +25,13 @@ jobs:
       - name: Deploy Docker Image to Heroku App
         uses: jctaveras/heroku-deploy@v2.1.3
         with:
-          email: ${HEROKU_EMAIL}
+          email: ${{ HEROKU_EMAIL }}
           # Heroku Dyno Formation
           formation: botcalendar
           # Your Heroku API Key
-          api_key: ${HEROKU_APIKEY}
+          api_key: ${{ HEROKU_APIKEY }}
           # Your Heroku App Name
-          app_name: ${HEROKU_APP_NAME}
+          app_name: ${{ HEROKU_APP_NAME }}
           # Dokerfile path
           dockerfile_path: .
 
