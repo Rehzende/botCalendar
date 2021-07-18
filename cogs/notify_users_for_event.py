@@ -4,15 +4,6 @@ from utils.google_calendar import list_events
 from datetime import date, datetime
 from dateutil.parser import parse
 import discord
-import logging
-
-# logger = logging.getLogger('discord')
-# logger.setLevel(logging.DEBUG)
-# handler = logging.FileHandler(
-#     filename='discord.log', encoding='utf-8', mode='w')
-# handler.setFormatter(logging.Formatter(
-#     '%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-# logger.addHandler(handler)
 
 
 async def notify(channel):
@@ -52,13 +43,11 @@ class Calendar(commands.Cog):
     def cog_unload(self):
         self.calendar_cron.cancel()
 
-    @tasks.loop(minutes=60.0)
+    @tasks.loop(minutes=1)
     async def calendar_cron(self):
-        if datetime.now().hour == 9:
-            await self.bot.wait_until_ready()
-            channel = self.bot.get_channel(
-                cfg.config[0]['discord']['notification_channel'])
-            await notify(channel)
+        #user_notify = await self.bot.pg_con.fetch("SELECT * FROM notifications WHERE user_id = $1 AND message_id = $2 AND calendar_id = $3",  payload.user_id, payload.message_id, str(calendar_id[0]))
+        pass
+        
 
 
 def setup(bot):

@@ -4,8 +4,7 @@ Bot simples que obtem os reuniões agendadadas dos dia envia uma notifiação em
 
 ## Requisitos
 
-- Crie um BOT no [Portal de desenvolvimento doDiscord](https://discord.com/developers/applications)
-- Crie uma credencial do google api, [Veja aqui como criar uma](https://karenapp.io/articles/how-to-automate-google-calendar-with-python-using-the-calendar-api/)
+- Crie um BOT no[Portal de desenvolvimento doDiscord](https://discord.com/developers/applications)
 
 - Python >= 3.6 
 - Pip3 >= 18.0
@@ -15,10 +14,18 @@ Bot simples que obtem os reuniões agendadadas dos dia envia uma notifiação em
 `source my_env/bin/activate`
 `pip3 install -r requirements.txt`
 
-## Uso Basico
+## Basic Usage
 
-1. Edite o arquivo config.json.example e salve como confi.json
+1. Edit the ``src/welcome-message.md`` as you please.
 
-2. Baixe o arquivo credentials.json e coloque na pasta raiz - Veja no tutorial acima como criar uma credencial.
+2. Set the API_TOKEN env var from the Discord Application bot
 
-3. Rode python3 bot.py
+3. Then run the project with local Python or as a Docker container (recommended).
+
+### Local
+
+``make local`` installs dependencies and run the application.
+
+### Docker
+
+Execute ``make`` or ``make run`` command to build and run the docker container. When you are done, ``make clean`` will remove the docker container and image.

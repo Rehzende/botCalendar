@@ -1,23 +1,26 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 from utils.google_calendar.cal_setup import get_calendar_service
-from utils import config as cfg
+import logging
 
+#logging.basicConfig(level=logging.DEBUG)
 
-
-def createEvent(eventName, eventDate, EventLocation):
+def createEvent(eventName, eventDate, EventLocation, EventDescription):
    service = get_calendar_service()
 
    data = eventDate 
    start = data.isoformat()
    end = (data + timedelta(hours=1)).isoformat()
 
-   event_result = service.events().insert(calendarId=cfg.config[1]['calendar_id'],
+   event_result = service.events().insert(calendarId='iici0lagcvqc7dtarsjpqmg00c@group.calendar.google.com',
        body={
            "summary": eventName,
-           "description": 'Esse é um Happy Hour da comunidade Mentoria IAC, fique a vontade para participar e conhecer a galera!',
+           "description": EventDescription,
            "location": EventLocation,
            "start": {"dateTime": start, "timeZone": 'America/Sao_Paulo'},
-           "end": {"dateTime": end, "timeZone": 'America/Sao_Paulo'},
-       }
+           "end": {"dateTime": end, "timeZone": 'America/Sao_Paulo'}   
+            }
    ).execute()
+   print("RESULT")
+   print(event_result)
+   print("FIM RESULT")
    return event_result

@@ -2,21 +2,18 @@ from discord.ext import commands
 import discord, datetime
 from dateutil.parser import parse
 from datetime import  date
-from utils.google_calendar import list_events
+from utils.google_calendar import list_events 
 import logging
-
-
 
 class Calendar(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(brief="Retorna os agendamento de estudo do dia atual")
-    async def agenda(self, ctx):
+    @commands.command(brief="Retorna os agendamento de estudo da semana atual")
+    async def agenda_semana(self, ctx):
         """
-        usage: >agenda
-
+        usage: >agenda_semana
         """
         dt = datetime.datetime.now()
         week_number = dt.isocalendar()[1]
@@ -25,8 +22,7 @@ class Calendar(commands.Cog):
 
 
 
-        eventos = list_events.getEvents()
-        print(eventos)
+        eventos = list_events.getEventsWeek()
         data = date.today().strftime("%d %b %Y")
 
         if not eventos:
