@@ -3,7 +3,17 @@ import discord, datetime
 from dateutil.parser import parse
 from datetime import  date
 from utils.google_calendar import list_events 
-import logging
+
+DIAS = [
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-Feira",
+    "Sexta-feira",
+    "Sábado",
+    "Domingo",
+]
+
 
 class Calendar(commands.Cog):
 
@@ -38,14 +48,12 @@ class Calendar(commands.Cog):
                 title="📚 Agenda de Estudos :loudspeaker: ", description=f"Semana: {week_number} -  {firstdayofweek} Até {lastdayofweek}")
             for event in eventos:
                 data = parse(event['start']['dateTime'])
+                indice_da_semana = data.weekday()
+                dia_da_semana = DIAS[indice_da_semana]
                 embed.add_field(
-                name=f"**:white_check_mark: {event['summary']}**", value=f" **Local:**  {event['location']} - **Horário:** {data.time()} ", inline=True)
-                embed.add_field(
-                name=f"Descrição:", value=f"```{event['description']}``` ", inline=False)
+                name=f"{dia_da_semana}", value=f"```yml\nAssunto: {event['summary']}\nLocal: {event['location']}\nData: {data.strftime('%d/%m/%Y - %H:%M')} - Hora de Brasilia```", inline=False)
                 embed.set_footer(
-                    text="Agenda: ✅ - Ativa")
+                    text="")
             await ctx.send(embed=embed)
-
-
 def setup(bot):
     bot.add_cog(Calendar(bot))
