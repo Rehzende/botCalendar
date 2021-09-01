@@ -58,15 +58,14 @@ class Calendar(commands.Cog):
         events = await self.bot.pg_con.fetch(
             "SELECT date_time FROM events WHERE notified = false"
         )
-        BR = tz.gettz("America/Sao_Paulo")
         for event in events:
             dt = datetime.datetime.strptime(
                 str(event["date_time"]), "%Y-%m-%d %H:%M:%S%z"
             )
-            dt_now = datetime.datetime.now(tz=BR).strftime("%Y-%m-%d %H:%M:%S%z")
+            dt_now = datetime.datetime.now(tz=cfg.TZ).strftime("%Y-%m-%d %H:%M:%S%z")
             dt_now = datetime.datetime.strptime(str(dt_now), "%Y-%m-%d %H:%M:%S%z")
             event_date = datetime.datetime(
-                dt.year, dt.month, dt.day, dt.hour, 0, 00, 0, tzinfo=BR
+                dt.year, dt.month, dt.day, dt.hour, 0, 00, 0, tzinfo=cfg.TZ
             )
             if event_date < dt_now:
                 pass
@@ -76,7 +75,5 @@ class Calendar(commands.Cog):
         #         self.bot.pg_con.commit()
         # data = events[0]
         # user_notify = await self.bot.pg_con.fetch("SELECT * FROM notifications WHERE user_id = $1 AND message_id = $2 AND calendar_id = $3",  payload.user_id, payload.message_id, str(calendar_id[0]))
-
-
 def setup(bot):
     bot.add_cog(Calendar(bot))
