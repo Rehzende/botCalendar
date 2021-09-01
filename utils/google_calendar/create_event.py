@@ -20,7 +20,4 @@ def createEvent(eventName, eventDate, EventLocation, EventDescription):
            "end": {"dateTime": end, "timeZone": 'America/Sao_Paulo'}   
             }
    ).execute()
-   print("RESULT")
-   print(event_result)
-   print("FIM RESULT")
    return event_result

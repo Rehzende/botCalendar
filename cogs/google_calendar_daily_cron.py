@@ -4,16 +4,6 @@ from utils.google_calendar import list_events
 from datetime import date, datetime
 from dateutil.parser import parse
 import discord
-import logging
-
-# logger = logging.getLogger('discord')
-# logger.setLevel(logging.DEBUG)
-# handler = logging.FileHandler(
-#     filename='discord.log', encoding='utf-8', mode='w')
-# handler.setFormatter(logging.Formatter(
-#     '%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-# logger.addHandler(handler)
-
 
 async def notify(channel):
 
@@ -54,7 +44,7 @@ class Calendar(commands.Cog):
 
     @tasks.loop(minutes=60.0)
     async def calendar_cron(self):
-        if datetime.now().hour == 9:
+        if datetime.now(tz=cfg.TZ).hour == 21:
             await self.bot.wait_until_ready()
             channel = self.bot.get_channel(
                 cfg.config[0]['discord']['notification_channel'])

@@ -1,5 +1,6 @@
 import datetime
 from utils.google_calendar.cal_setup import get_calendar_service
+from utils import config as cfg
 import logging
 from dateutil import tz
 
@@ -12,7 +13,7 @@ logger.addHandler(handler)
 def getEvents():
    service = get_calendar_service()
    # Call the Calendar API
-   dt = datetime.datetime.now()
+   dt = datetime.datetime.now(tz=cfg.TZ)
    BR = tz.gettz('America/Sao_Paulo')  
    start_date = datetime.datetime(dt.year, dt.month, dt.day, dt.hour, 0, 00,0 ,tzinfo=BR).isoformat() 
    end_date = datetime.datetime(dt.year,  dt.month,  dt.day, 23, 30, 59, 0,tzinfo=BR).isoformat() 
@@ -28,7 +29,7 @@ def getEventsWeek():
    service = get_calendar_service()
    # Call the Calendar API
    
-   dt = datetime.datetime.now()
+   dt = datetime.datetime.now(tz=cfg.TZ)
    week_number = dt.isocalendar()[1]
    firstdayofweek = datetime.datetime.strptime(f'{dt.year}-W{int(week_number)}-1', "%Y-W%W-%w").date()
    lastdayofweek = firstdayofweek + datetime.timedelta(days=6.9)
