@@ -24,7 +24,10 @@ jobs:
 
       - name: Create a Config.json
         run: |
-            echo $GOOGLEKEY >> src/key.json
+            ls
+            touch key.json
+            echo $GOOGLEKEY >> key.json
+            touch config.json
             echo $CONFIG >> config.json
         shell: bash
         env:
