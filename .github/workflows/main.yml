@@ -26,9 +26,9 @@ jobs:
         run: |
             ls
             touch key.json
-            echo $GOOGLEKEY >> key.json
+            echo $GOOGLEKEY > key.json
             touch config.json
-            echo $CONFIG >> config.json
+            echo $CONFIG > config.json
         shell: bash
         env:
           GOOGLEKEY: ${{secrets.GOOGLE_SERVICE_CONECTION}}
