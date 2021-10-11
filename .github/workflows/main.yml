@@ -27,10 +27,10 @@ jobs:
             ls
             touch key.json
             echo $GOOGLEKEY > key.json
-            print key.json
+            cat key.json
             touch config.json
             echo $CONFIG > config.json
-            print config.json
+            cat config.json
             ls
         shell: bash
         env:
