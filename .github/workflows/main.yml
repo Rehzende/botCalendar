@@ -21,7 +21,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Create a Config.json
+        run: echo "${{ secrets.CONFIG_BOT }}" > config.json
 
+      - name: Create a Config.json and key.json
+        run: echo "${{ secrets.GOOGLE_SERVICE_CONECTION }}" > key.json
+        
       - name: Build, Push and Release a Docker container to Heroku.
         # You may pin to the exact commit or the version.
         # uses: gonuit/heroku-docker-deploy@9ab97585f979857642d66612a2ae4062b3347d53
